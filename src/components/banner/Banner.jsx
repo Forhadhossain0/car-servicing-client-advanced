@@ -16,9 +16,9 @@ const Banner = () => {
     <div id="slide1" className="carousel-item relative  w-full">
     <img src="../../../src/assets/images/banner/5.jpg" className="w-full" />
 
-    <div   className="absolute  bg-gradient-to-r  from-[#151515] to-[rgba(21,21,21,0)] h-full w-full flex  items-center justify-between ">
+    <div data-aos="fade-left" className="absolute  bg-gradient-to-r  from-[#151515] to-[rgba(21,21,21,0)] h-full w-full flex  items-center justify-between ">
       <div className="text-left justify-start my-auto  text-white px-5">
-        <div className="px-2 md:px-36">
+        <div  className="px-2 md:px-36">
          <div  className="md:w-[50%]">
           <h1 className="md:text-6xl text-4xl leading-40 font-bold">Affordable Price For Car  Servicing</h1>
           <p className="py-6 ">There are many variations of passages of  available, but the majority have suffered alteration in some form</p>

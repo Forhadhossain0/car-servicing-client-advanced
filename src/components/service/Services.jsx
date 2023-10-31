@@ -1,10 +1,13 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+
 
 
 const Services = () => {
-
+  AOS.init({});
 
 const [services,setServices] = useState([])
 useEffect(()=> {
@@ -17,7 +20,7 @@ useEffect(()=> {
 
     <div className=" md:mt-0 mt-80">
       <div className="services my-20">
-        <div className="container header-content mx-auto mb-10 ">
+        <div data-aos="zoom-in" className="container header-content mx-auto mb-10 ">
           <h3 className="text-xl font-bold text-[#ff3811]">Service</h3>
           <h1 className="text-5xl font-bold py-2">Our Service Area</h1>
           <p className="mx-auto py-2 md:w-[60%]">
@@ -31,7 +34,7 @@ useEffect(()=> {
         <div className="grid md:grid-cols-3 ">
 
       {  services.map(card =>
-        <div className="content m-5 rounded-lg border hover:shadow-2xl " key={card._id}>
+        <div data-aos="zoom-in" className="content m-5 rounded-lg border hover:shadow-2xl " key={card._id}>
         <div className="content p-5 text-left space-y-3  ">
           <img className="rounded-xl h-[225px]" src={card.img}  alt=""  />
           <h2 className="text-2xl font-bold">{card.title}</h2>

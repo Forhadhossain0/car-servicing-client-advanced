@@ -11,6 +11,17 @@
   
 
 .active{
-  color: rgb(6, 20, 141);
+  color: rgb(218, 82, 24);
   /* background-color: blue; */
+}
+
+
+body {
+  color: rgb(0, 0, 0);
+  background-color: white;
+}
+
+.dark-mode {
+  color: #ffffff;
+  background-color: rgb(14, 13, 13);
 }

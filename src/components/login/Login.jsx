@@ -1,39 +1,66 @@
 import { useContext } from "react";
 import { AuthContext } from "../provider/Authprovider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import auth from "../../firebase/firebase.config";
+import axios from 'axios';
+
+
 
 
 const Login = () => {
 
   const {singIn} = useContext(AuthContext);
   const navigate = useNavigate();
+  const  location = useLocation();
+  console.log(location);
+
 
  const handleSubmit = e =>{
-
      e.preventDefault();
      const email = e.target.email.value;
      const password = e.target.password.value;
   
-
      singIn(email,password)
-     .then(result => {
-       console.log(result.user)
-       navigate('/')
+     .then(() => {
+      //  console.log(result.user)
+       const user = {email};
+       axios.post('http://localhost:5000/jwt' , user, {withCredentials : true})
+       .then(res =>  {
+        // console.log(res.data) 
+        if(res.data?.success){
+          navigate(location?.state ? location.state : '/')
+          }
+       })
+
       })
       .catch((err) => console.log(err,'login site has some truble to continue'))
-      
+
+    };
+  
+
+
+
+    // google handle to login   
+    const googleprovider = new GoogleAuthProvider();
+
+    const handleGoogle = () => {
+      signInWithPopup(auth,googleprovider)
+      .then((res) => {
+        console.log(res)
+          navigate(location?.state ? location.state : '/')
+          
+      })
+      .catch(err => console.log(err) )
     }
-
-
     
     return (
         <div>
-            <div className="hero md:h-[520px] mb-32">
+  <div className="hero md:h-[520px] mb-32">
   <div className="hero-content flex-col lg:flex-row-reverse  ">
   
-    <div className="card flex-shrink-0 md:w-[440px] h-[520px] pb-5 border rounded-md ">
+    <div  className="card flex-shrink-0 md:w-[440px] h-[520px] pb-5 border rounded-md ">
         <h2 className="text-[#444] text-3xl pt-4 font-bold">Login</h2>
-
       <form onSubmit={handleSubmit} className="card-body w-full px-20 mx-auto">
         <div className="form-control">
           <label className="label">  <span className="label-text font-bold">Email</span> </label>
@@ -50,7 +77,7 @@ const Login = () => {
 
         <p>Or Sign In with</p>
       <div className="flex justify-center py-5 space-x-3">
-        <button className="text-[#ff3811] bg-slate-200 text-lg w-10 h-10 font-bold rounded-full hover:bg-black hover:text-white transition-all">G</button>
+        <button onClick={handleGoogle} className="text-[#ff3811] bg-slate-200 text-lg w-10 h-10 font-bold rounded-full hover:bg-black hover:text-white transition-all">G</button>
         <button className="text-[#3317b1] bg-slate-200 text-lg w-10 h-10 font-bold rounded-full hover:bg-black hover:text-white transition-all">f</button>
         <button className="text-[#4c24ff] bg-slate-200 text-lg w-10 h-10 font-bold rounded-full hover:bg-black hover:text-white transition-all">in</button>
       </div>

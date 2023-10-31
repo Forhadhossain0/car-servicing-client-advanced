@@ -37,7 +37,7 @@ const Bookmark = () => {
 
 return (
 
-<div className="mx-28 my-10">
+<div className="mx-28 my-10 text-black">
     {/* <h2 className="text-center text-xl"> {service.title}</h2> */}
 
 

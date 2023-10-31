@@ -1,23 +1,32 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/Authprovider";
 import MarkedItems from "./MarkedItems";
+import axios from "axios";
 
 
 const Markedservices = () => {
-
     const {user} = useContext(AuthContext);
     const [marked,setMarked] = useState([])
-    const [sortOrder, setSortOrder] = useState('asc'); 
+    const [sortOrder, setSortOrder] = useState('asc');  //sorting data 
 
 
+
+    const url = `http://localhost:5000/bookmark?userEmail=${user?.email}`;
 
     useEffect(()=> {
-        fetch(`http://localhost:5000/bookmark?userEmail=${user?.email}`)
-        .then(res => res.json())
-        .then(data => setMarked(data))
-    },[])
+        axios.get(url,{withCredentials:true})
+        .then(res => setMarked(res.data))
+    },[url])
+
+    // useEffect(()=> {
+    //     fetch(`http://localhost:5000/bookmark?userEmail=${user?.email}`)
+    //     .then(res => res.json())
+    //     .then(data => setMarked(data))
+    // },[])
 
 
+
+    // item delete handle function
     const handleDelete = (id) => {
         const process = confirm('are you sure to continue delete process ? ')
         if (process){
@@ -35,8 +44,10 @@ const Markedservices = () => {
             })
         } }
 
+
+// item update or confirm handleing funtion 
     const handleUpdate = (id) => {
-            fetch(`http://localhost:5000/bookmark/${id}` ,{
+            fetch(`http://localhost:5000/bookmark/${id}`, {
                 method: 'PATCH',
                 headers : {  'content-type' : 'application/json'  },
                 body : JSON.stringify({status:'confirm'}) 
@@ -45,11 +56,9 @@ const Markedservices = () => {
             .then(data => {
                 console.log(data)
                 if(data.modifiedCount > 0){
-                    const remaining = marked.filter(booked => booked._id !== id);
-                    
+                    const remaining = marked.filter(booked => booked._id !== id);  
                     const updatedItem =  marked.find(booked => booked._id === id)
                     updatedItem.status ='confirm';
-
                     const newUpdate = [updatedItem, ...remaining]
                     setMarked(newUpdate)
                } else{
@@ -58,6 +67,8 @@ const Markedservices = () => {
         })
         }
 
+
+        //data sorting optional 
         const handleSort = () => {
             const sortedServices = [...marked];
         
@@ -99,17 +110,6 @@ return (
 
  <div className="py-10">
   <table className="table">
-    {/* head */}
-    {/* <thead className="text-lg capitalize">
-      <tr> 
-        <th>  <input type="checkbox" className="checkbox" /> </th>
-        <th> Services </th>
-        <th> Name </th>
-        <th> Price </th>
-        <th> Date </th>
-        <th></th>
-      </tr>
-    </thead> */}
    
     <tbody> 
        {

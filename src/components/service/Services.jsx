@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useState } from "react";
+// import { useEffect, useState } from "react";
+import useServices from "../cutomeHooks/useServices";
 import { Link } from "react-router-dom";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
@@ -9,18 +9,20 @@ import 'aos/dist/aos.css';
 const Services = () => {
   AOS.init({});
 
-const [services,setServices] = useState([])
-useEffect(()=> {
-    fetch('http://localhost:5000/services')
-    .then(res=> res.json())
-    .then(data=> setServices(data))
-},[])
+// const [services,setServices] = useState([])
+// useEffect(()=> {
+//     fetch('http://localhost:5000/services')
+//     .then(res=> res.json())
+//     .then(data=> setServices(data))
+// },[])
+
+const services = useServices();
 
   return (
 
-    <div className=" md:mt-0 mt-80">
+    <div className=" md:mt-0 mt-80 ">
       <div className="services my-20">
-        <div data-aos="zoom-in" className="container header-content mx-auto mb-10 ">
+        <div className=" container header-content mx-auto mb-10 ">
           <h3 className="text-xl font-bold text-[#ff3811]">Service</h3>
           <h1 className="text-5xl font-bold py-2">Our Service Area</h1>
           <p className="mx-auto py-2 md:w-[60%]">

@@ -18,9 +18,9 @@ const Banner = () => {
 
     <div data-aos="fade-left" className="absolute  bg-gradient-to-r  from-[#151515] to-[rgba(21,21,21,0)] h-full w-full flex  items-center justify-between ">
       <div className="text-left justify-start my-auto  text-white px-5">
-        <div  className="px-2 md:px-36">
-         <div  className="md:w-[50%]">
-          <h1 className="md:text-6xl text-4xl leading-40 font-bold">Affordable Price For Car  Servicing</h1>
+        <div  className="px-2 md:px-20">
+         <div  className="md:w-[60%]">
+          <h1 className="md:text-6xl text-4xl md:leading-40 font-bold">Affordable Price For Car  Servicing</h1>
           <p className="py-6 ">There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
           </div>
           <div className="flex">
@@ -116,8 +116,8 @@ const Banner = () => {
 
 
 {/* aboute section start */}
-<div id="about ">
-    <div className="row">
+<div id="about">
+    <div className="row h-[90vh] ">
         <div className=" grid md:grid-cols-2 w-full h-[600px]  ">
             <div  data-aos="fade-right"  className="main-img-container w-full h-full  relative ">
                 <div className="box-img w-[70%] h-[80%] ">
@@ -127,9 +127,9 @@ const Banner = () => {
             </div>
              <div data-aos="fade-left" className="content space-y-5 md:w-[70%] text-left md:ml-10">
                     <h3 className="font-bold text-orange-600 text-xl">About Us</h3>
-                    <h1 className="md:text-5xl font-bold leading-50">We are qualified & of experience in this field</h1>
-                    <p className="leading-8">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. </p>
-                    <p className="leading-8">the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. </p>
+                    <h1 className="md:text-5xl font-bold md:leading-50">We are qualified & of experience in this field</h1>
+                    <p className="md:leading-8">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. </p>
+                    <p className="md:leading-8">the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. </p>
                     <button className="btn border-orange-600 hover:text-black text-white rounded-none bg-[#FF3811]">Get More Info</button>
              </div>
         </div>

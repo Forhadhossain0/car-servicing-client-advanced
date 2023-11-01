@@ -1,22 +1,29 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/Authprovider";
 import MarkedItems from "./MarkedItems";
-import axios from "axios";
+// import axios from "axios";
+import useAxios from "../cutomeHooks/useAxios";
 
 
 const Markedservices = () => {
     const {user} = useContext(AuthContext);
     const [marked,setMarked] = useState([])
     const [sortOrder, setSortOrder] = useState('asc');  //sorting data 
+    const axiosSecure = useAxios()
 
 
-
-    const url = `http://localhost:5000/bookmark?userEmail=${user?.email}`;
+    const url = `bookmark?email=${user?.email}`;
+    // const url = `http://localhost:5000/bookmark?email=${user?.email}`;
 
     useEffect(()=> {
-        axios.get(url,{withCredentials:true})
-        .then(res => setMarked(res.data))
-    },[url])
+
+        // axios.get(url,{withCredentials:true})
+        // .then(res => setMarked(res.data))
+
+        axiosSecure.get(url)
+       .then(res => setMarked(res.data))
+
+    },[url,axiosSecure])
 
     // useEffect(()=> {
     //     fetch(`http://localhost:5000/bookmark?userEmail=${user?.email}`)

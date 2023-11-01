@@ -8,7 +8,7 @@ import Checkout from "../checkout/Checkout";
 import Bookmark from "../bookmark/Bookmark";
 import Markedservices from "../bookmark/Markedservices";
 import Privetroute from "../privetroute/Privetroute";
-import Services from "../service/Services";
+// import Services from "../service/Services";
 
 const router = createBrowserRouter([
     {

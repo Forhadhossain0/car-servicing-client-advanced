@@ -1,16 +1,18 @@
-import { useContext } from "react";
-import { AuthContext } from "../provider/Authprovider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import auth from "../../firebase/firebase.config";
-import axios from 'axios';
+// import { useContext } from "react";
+// import { AuthContext } from "../provider/Authprovider";
+import useAuth from "../cutomeHooks/useAuth";
+
 
 
 
 
 const Login = () => {
 
-  const {singIn} = useContext(AuthContext);
+  // const {singIn} = useContext(AuthContext);
+  const {singIn} = useAuth()
   const navigate = useNavigate();
   const  location = useLocation();
   console.log(location);
@@ -21,19 +23,12 @@ const Login = () => {
      const email = e.target.email.value;
      const password = e.target.password.value;
   
-     singIn(email,password)
-     .then(() => {
-      //  console.log(result.user)
-       const user = {email};
-       axios.post('http://localhost:5000/jwt' , user, {withCredentials : true})
-       .then(res =>  {
-        // console.log(res.data) 
+      singIn(email,password)
+      .then((res) => { 
+        // console.log(res.user) 
         if(res.data?.success){
           navigate(location?.state ? location.state : '/')
-          }
-       })
-
-      })
+        } })
       .catch((err) => console.log(err,'login site has some truble to continue'))
 
     };

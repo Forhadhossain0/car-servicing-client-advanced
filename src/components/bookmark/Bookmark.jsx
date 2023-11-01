@@ -16,9 +16,9 @@ const Bookmark = () => {
       const servicePrice = e.target.price.value;
       const serviceDescription = e.target.description.value;
       const date = e.target.date.value;
-      const userEmail = e.target.email.value;
+      const email = e.target.email.value;
 
-      const order = {service,servicePrice,serviceDescription,date, serviceId: _id,  userEmail,img }
+      const order = {service,servicePrice,serviceDescription,date, serviceId: _id,  email,img }
       console.log(order)
 
 
